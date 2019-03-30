@@ -59,11 +59,16 @@ class Parser():
         table = span.parent.next_element.next_element.next_element
         return [i.text for i in table.find_all('li')]
 
+    def getBodyContent(self, soup):
+        return soup.select('div ~ div.container.vp > *')[0].text
+
+
     def runChild(self):
         soup = BeautifulSoup(self.content, 'html.parser')
         synonyms = self.getSynonyms(soup)
+        body_content = self.getBodyContent(soup)
         if synonyms:
-            return self.code, synonyms
+            return self.code, synonyms, body_content
 
 class Scraper():
     def mapChild(self, content):
@@ -96,8 +101,8 @@ def loadAllCodes():
         count = 0
         for item in items:
             if item:
-                code, synonyms = item
-                ICDCode(code=code, synonyms=synonyms).save()
+                code, synonyms, body_content = item
+                ICDCode(code=code, synonyms=synonyms, body_content=body_content).save()
                 count += 1
         print('saved', count, 'items to the database')
 
@@ -128,11 +133,11 @@ def getFromSite(code):
         if code == Parser.parseCode(site):
             d = Downloader([site])
             try:
-                code, synonyms = Parser(next(d.run())).runChild()
+                code, synonyms, body_content = Parser(next(d.run())).runChild()
             except TypeError:
                 return # error with response
             if synonyms:
-                ICDCode(code=code, synonyms=synonyms).save()
+                ICDCode(code=code, synonyms=synonyms, body_content=body_content).save()
                 print('found {} synonyms online, cached it'.format(code))
                 return synonyms
 

@@ -11,9 +11,11 @@ class ICDCode(db.Document):
     Represents an ICD Code
       code: [A-Z][0-9]{2}.[0-9] code
       synonyms: list of appropriate synonyms
+      body_content: raw html content
     '''
     code = db.StringField(max_length=10)
     synonyms = db.ListField(db.StringField(max_length=256))
+    body_content = db.StringField()
 
 class RangedSite(db.Document):
     '''
