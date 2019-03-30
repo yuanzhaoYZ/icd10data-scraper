@@ -8,7 +8,9 @@ This web app scrapes icd10data and lazily stores codes and appropriate synonyms 
 
 You must run:
 ```
- $ pip3 install -r requirements.txt
+ conda create -n icd_scraper python=3.6
+ source activate icd_scraper
+ pip install -r requirements.txt
 ```
 
 ## Usage:
@@ -16,7 +18,8 @@ You must run:
 ### Code->synonyms mapping
 Run the app:
 ```
- $ python3 run.py
+source activate icd_scraper
+python run.py
 ```
 
 Get a code's synonyms:
@@ -41,7 +44,8 @@ brew services start mongodb
 ```
 
 ```
- $ python3 scraper.py
+source activate icd_scraper
+python scraper.py
 ```
 
 Export data from Mongo to a JSON file
