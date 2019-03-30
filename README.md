@@ -31,6 +31,7 @@ Given a list of codes in codes.txt:
 
 ### Scrapper
 Load codes into a database - optional, but will prepopulate all codes (the speed here can be improved):
+
 Start Mongo db locally (Mac)
 
 ```
