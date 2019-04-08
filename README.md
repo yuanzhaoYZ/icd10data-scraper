@@ -58,12 +58,12 @@ Backup
 mongodump --collection ICDCode --db icdcodes --out ~/Downloads/mongo_backup/
 ```
 ### data_scraper.py
-Load ICD codes and find fields like code, name, subclass, synonyms, applicableTo, ClinicalInfos, DRGCodes, etc
+Load ICD codes and find fields like code, name, subclass, synonyms, applicableTo, ClinicalInfos, DRGCodes, etc    
 This program will scrapes icd10data and stores fields in a local file
 ```bash
 python data_scraper.py
 ```
 ### drg_codes_scraper.py
-Load DRG codes and find fields like code, name, Related Groups List codes
-data can be found at : https://www.icd10data.com/ICD10CM/DRG
+Load DRG codes and find fields like code, name, Related Groups List codes    
+data can be found at : https://www.icd10data.com/ICD10CM/DRG    
 This program will scrapes DRG data and stores fileds in a local file
